@@ -815,6 +815,72 @@ body {
     align-items: center;
     border-radius: 50%;
 }
+.small-cart img {
+    width: unset!important;
+    max-width: unset;
+}
+.sale-product-text {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 1rem;
+}
+.sale-product-text span {
+    color: #8B9599;
+    font-size: 14px;
+}
+.sale-product-text a {
+    color: #005091;
+    font-weight: bold;
+}
+.sale-product-shop {
+    display: flex;
+    align-items: center;
+}
+.sale-product-shop .head-price {
+    color: #3D7C45;
+    font-size: 20px;
+    font-weight: bold;
+}
+.sale-product-shop .prev-price {
+    text-decoration: line-through;
+    color: #8B9599;
+    font-size: 16px;
+    margin-left: 0.5rem;
+}
+.countdown-text {
+    font-size: 16px;
+    color: #2E3133;
+    margin-top: 1rem;
+    margin-bottom: 0.25rem;
+}
+.countdown-tab {
+    width: 100%;
+    padding: 0.5rem 1rem;
+    background: var(--red);
+    color: white;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    justify-content: space-around;
+}
+.countdown-tab-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    line-height: 1.2;
+}
+.countdown-tab .num {
+    font-weight: bold;
+    font-size: 16px;
+}
+.countdown-tab .desc {
+    font-size: 10px;
+}
+.double-dot {
+    font-weight: bolder;
+    font-size: 16px;
+}
 @media (max-width: 1200px) { 
     .homepage-b {
         padding: 2rem ;

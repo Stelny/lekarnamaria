@@ -50,6 +50,8 @@ $(document).ready(function () {
       e.preventDefault();
       thisClass(".header-menu-items");
     })
+
+    //CAROUSELS
     const homepage__slider = $('.homepage__slider');
     homepage__slider.owlCarousel({
       loop:true,
@@ -63,6 +65,23 @@ $(document).ready(function () {
     homepage__slider.trigger('to.owl.carousel', [$(this).index(), 300]);
   });
 
+
+    const sale_product_carousel = $('.sale-product__carousel');
+
+    sale_product_carousel.owlCarousel({
+      loop:true,
+      margin:10,
+      nav:false,
+      items: 1,
+      dots: false
+    })
+
+    $('.sale-product-heading-nav .prev').click(function() {
+        sale_product_carousel.trigger('prev.owl.carousel');
+    })
+    $('.sale-product-heading-nav .next').click(function() {
+      sale_product_carousel.trigger('next.owl.carousel');
+  })
 
     
 });
