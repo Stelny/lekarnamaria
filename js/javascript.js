@@ -9,12 +9,22 @@ $(document).ready(function () {
       $(this).children().removeClass('active');
     });*/
 
-    function thisClass($element, $default = 'active') {
-      if ($($element).hasClass($default)) {
-        $($element).removeClass($default);
+    function thisClass(element, defaults = 'active') {
+      if ($(element).hasClass(defaults)) {
+        $(element).removeClass(defaults);
       } else {
-        $($element).addClass($default);
+        $(element).addClass(defaults);
       }
+    }
+
+    function navsCarousel(element, nav) {
+      $(nav+' .prev').click(function() {
+        element.trigger('prev.owl.carousel');
+      })
+
+      $(nav+' .next').click(function() {
+          element.trigger('next.owl.carousel');
+      })
     }
 
 
@@ -76,12 +86,115 @@ $(document).ready(function () {
       dots: false
     })
 
-    $('.sale-product-heading-nav .prev').click(function() {
-        sale_product_carousel.trigger('prev.owl.carousel');
+
+    navsCarousel(sale_product_carousel, '.sale-product-heading-nav');
+
+
+    $('.top-sell__carousel').owlCarousel({
+        loop:true,
+        margin:10,
+        nav:false,
+        items: 3,
+        dots: false,
+        responsive : {
+          0 : {
+            items: 1
+          },
+          550 : {
+              items: 2,
+          },
+          776 : {
+            items:3
+          },
+          991 : {
+              items:3
+          }
+      }
     })
-    $('.sale-product-heading-nav .next').click(function() {
-      sale_product_carousel.trigger('next.owl.carousel');
+
+    const top_sell =  $('.top-sell__carousel');
+    navsCarousel(top_sell, '.top-sell-nav');
+
+    const week = $('.week-sell__carousel');
+    navsCarousel(week, '.week-sell-nav');
+
+    $('.week-sell__carousel').owlCarousel({
+        loop:true,
+        margin: 30,
+        nav:false,
+        items: 3,
+        dots: false,
+        responsive : {
+          0 : {
+            items: 1
+          },
+          550 : {
+              items: 2,
+          },
+          776 : {
+            items:2
+          },
+          991 : {
+              items:3
+          },
+          1200 : {
+            items:4
+        }
+      }
+    })
+
+    $('.brands__carousel').owlCarousel({
+      loop:true,
+      margin: 30,
+      nav:false,
+      items: 3,
+      dots: false,
+      responsive : {
+        0 : {
+          items: 1
+        },
+        550 : {
+            items: 2,
+        },
+        776 : {
+          items:3
+        },
+        991 : {
+            items: 4
+        },
+        1200 : {
+          items: 5
+      }
+    }
   })
+  const brands = $('.brands__carousel');
+    navsCarousel(brands, '.brands-nav');
+
+    $('.news__carousel').owlCarousel({
+      loop:true,
+      margin:40,
+      nav:false,
+      items: 3,
+      dots: false,
+      responsive : {
+        0 : {
+          items: 1
+        },
+        550 : {
+            items: 2,
+        },
+        776 : {
+          items:3
+        },
+        991 : {
+            items:3
+        }
+    }
+  })
+
+  const news = $('.news__carousel');
+  navsCarousel(news, '.news-nav');
+  
 
     
 });
