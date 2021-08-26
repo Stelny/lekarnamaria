@@ -181,10 +181,10 @@ $(document).ready(function () {
           items: 1
         },
         550 : {
-            items: 2,
+            items: 1,
         },
         776 : {
-          items:3
+          items:2
         },
         991 : {
             items:3
