@@ -261,6 +261,31 @@ $(document).ready(function () {
       e.preventDefault();
       $("body").addClass('filter');
     })
+
+    $('.filter-btn-close').click(function(e) {
+      e.preventDefault();
+      $("body").removeClass('filter');
+    })
+
+    $('.product-table-heading a').click(function(e) {
+      e.preventDefault();
+      const data = $(this).attr('data-id');
+      $('.product-table-heading a').removeClass('active');
+      $(this).addClass('active');
+
+      $('.product-table-content').removeClass('active');
+      $('#product-'+data).addClass('active');
+    })
+
+    $('.way-item input').change(function(){
+      $(this).parent().siblings().removeClass('active');
+      const a = $(this).is(':checked');
+
+      if (a) {
+        $(this).parent().addClass('active');
+      }
+      console.log(a);
+    })
       
     
 });
