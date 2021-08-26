@@ -422,7 +422,6 @@ body {
 }
 .header-menu-category.active .header-menu-category-content {
     display: block;
-
 }
 .header-menu-category-content {
     background: white;
@@ -464,9 +463,7 @@ select {
     -webkit-appearance: none;
     position: relative;
 }
-.header-menu {
-    overflow: hidden;
-}
+
 @media (max-width: 1500px) { 
     .header-menu-category-heading {
         font-size: 14px;
@@ -499,8 +496,11 @@ select {
         font-size: 13px;
     } 
 } 
+.header-menu-items {
+    overflow: hidden;
+}
 @media (max-width: 991px) { 
-    .header-menu {
+    .header-menu-items {
         overflow: unset;
     }
     .top-header-menu {
@@ -2199,28 +2199,46 @@ body.filter .footer, body.filter .newsletter, body.filter .catalog-content, body
 table {
     width: 100%;
 }
-.cart .table-layout {
+.table-layout {
     border: 2px solid #DCE3E6;
     border-radius: 15px;
     width: 100%;
     overflow: hidden;
 }
-.cart thead tr {
+.table-layout thead tr {
     background: #F6F8F8;
     border-radius: 15px;
 }
-.cart tr {
+.table-layout tr {
     border-bottom: 2px solid #DCE3E6;
 }
-.cart thead tr th {
+.table-layout thead tr th {
     padding: 1.5rem 4rem;
 }
 .cart .product-count {
     width: 110px;
     padding: 0.75rem 1rem;
 }
-.cart tbody td {
+.table-layout tbody td {
     padding: 1.5rem 2rem;
+}
+.account-content .table-layout td, .account-content .table-layout th {
+    text-align: center;
+}
+.table-layout .btn {
+    padding: 1rem 2rem;
+    margin: 0.25rem 0.5rem;
+}
+
+.cyan-text {
+    color: var(--cyan);
+    font-weight: bold;
+    font-size: 16px;
+}
+.blue-text {
+    color: var(--blue);
+    font-weight: bold;
+    font-size: 16px;
 }
 .cart-pr {
     display: flex;
@@ -2617,19 +2635,16 @@ margin-right: 30px;
 .input-div label span {
     color: var(--red);
 }
-.order .way-item input {
+.order .way-item input, .reservation .way-item input {
     display: none;
 }
-.order .way-item input {
-
-}
-.order .way-item {
+.order .way-item, .reservation .way-item {
     padding: 0.5rem 1rem;
     color: var(--cyan);
     font-weight: bold;
     border-color: var(--cyan);
 }
-.order .way-item.active, .order .way-item:hover {
+.order .way-item.active, .order .way-item:hover, .reservation .way-item.active, .reservation .way-item:hover {
     background: var(--cyan);
     color: white;
 }
@@ -2995,7 +3010,9 @@ iframe {
     max-width: 820px;
     margin: auto;
 }
-
+.account-content .table-layout .heading {
+    display: none;
+}
 @media (max-width: 1200px) { 
     .account-settings {
         max-width: unset;
@@ -3017,7 +3034,34 @@ iframe {
         max-width: unset;
     }
 }
-
+.account .table-layout {
+    padding-bottom: 1rem;
+}
+.bread.text-center ul {
+    justify-content: center;
+}
+.reservation-card {
+    max-width: 775px;
+    width: 100%;
+    margin: auto;
+    border-radius: 15px;
+    border: 2px solid #DCE3E6;
+    overflow: hidden;
+}
+.reservation-card-content {
+    padding: 3rem;
+    padding-bottom: 1rem;
+}
+.reservation {
+    padding: 3rem 0;
+}
+.reservation .custom-check {
+    color: var(--black);
+    font-size: 13px;
+}
+.reservation .checkmark {
+    top: 0;
+}
 @media (max-width: 991px) {
     .subpage h1 {
         font-size: 32px;
@@ -3033,7 +3077,95 @@ iframe {
         border-bottom: 2px solid #DCE3E6;
     }
 }
+.detail-order {
+    display: none;
+}
+.forgot-pass {
+    max-width: 300px;
+}
+.forgot-pass {
+    margin-left: 5rem;
+}
+.reservation .way-item {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+.reservation-card-faq::before {
+    content: url(../icons/fa.svg);
+    margin-right: 1rem;
+}
+.reservation-card-faq {
+    background: #00A99B33;
+    padding: 1.5rem 3rem;
+    color: var(--cyan);
+    font-weight: bold;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+}
+.reservation-card-bottom {
+    padding: 2rem 3rem;
+    text-align: right;
+}
+.reservation-card-bottom .btn {
+    font-size: 18px
+}
+.reservation .date-select select {
+    font-weight: 400;
+}
+@media (max-width: 1200px) { 
+    .forgot-pass {
+        margin: 0;
+    }
+} 
 @media (max-width: 776px) { 
+    .account-content .table-layout .heading {
+        display: block;
+        color: var(--black);
+        font-weight: bold;
+        font-size: 16px;
+        margin-bottom: 0.5rem;
+    } 
+    .reservation-card-bottom {
+        text-align: center;
+    }
+    .account-content .table-layout td {
+        flex-direction: column;
+        text-align: left;
+    }
+    .account-content .table-layout td {
+        width: 50%;
+        padding: 1.5rem;
+    }
+    .account-content .table-layout .detail-order {
+        width: 100%;
+        padding-top: 0;
+    }
+    .detail-order {
+        order: 5;
+        display: block;
+    }
+    .state-order .btn-grey {
+        display: none;
+    }
+    .state-order .btn {
+        padding: 1rem 1rem;
+        width: fit-content;
+        width: -moz-fit-content;
+        margin: 0;
+    }
+    .id-order {
+        order: 1;
+    }
+    .date-order {
+        order: 2;
+    }
+    .price-order {
+        order: 4;
+    }
+    .state-order {
+        order: 3;
+    }
     .account-profile-card-heading {
         display: flex;
         justify-content: center;
@@ -3054,3 +3186,11 @@ iframe {
         margin: 0;
     }
 } 
+@media (max-width: 500px) { 
+    .forgot-pass {
+        max-width: unset;
+    }
+} 
+.header-menu-category:hover .header-menu-category-content {
+    display: block;
+}

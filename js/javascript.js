@@ -65,7 +65,6 @@ $(document).ready(function () {
     const homepage__slider = $('.homepage__slider');
     homepage__slider.owlCarousel({
       loop:true,
-      margin:10,
       nav:false,
       items: 1,
       dots: true
@@ -80,7 +79,6 @@ $(document).ready(function () {
 
     sale_product_carousel.owlCarousel({
       loop:true,
-      margin:10,
       nav:false,
       items: 1,
       dots: false
