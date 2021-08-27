@@ -84,6 +84,10 @@ $(document).ready(function () {
       dots: false
     })
 
+    $('.faq-item').click(function(e){
+      e.preventDefault()
+      $(this).toggleClass("active")
+  });
 
     navsCarousel(sale_product_carousel, '.sale-product-heading-nav');
 
