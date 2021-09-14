@@ -207,20 +207,25 @@
             </div>
         </div>
     </div>
+    @extends('store.layout') @section('title', 'Objednávka prijatá') @section('description', 'Objednávka prijatá') @if(!empty($dataForExtract)) @php extract($dataForExtract,EXTR_PREFIX_ALL,'va_page'); @endphp @endif @section('content') 
+
     <div class="solo-page">
         <div class="container">
             <div class="solo-page-wrap">
                 <img src='icons/send.svg' alt='send'>
                 <h1>Objednávka bola odoslaná</h1>
-                <p>Vaša objednávka č. 486387 bola zaznamenána a aktuálne ju vybavujeme, prosím skontrolujte si váš email: janko.hraško@gmail.com pre potvrdenie objednávky</p>
+                <p>Vaša objednávka č. {{$order->getIdentifier()}}
+                    bola zaznamenána a aktuálne ju vybavujeme, 
+                    prosím skontrolujte si váš email: @if ($order->customer) {{ $order->customer->email }} @else {{ $order->deliveryAddress()->email }} @endif pre viac informácií o objednávke pre potvrdenie objednávky</p>
                 <div class="pt-3">
-                    <a href='' class="btn btn-cyan">
-                        Sledovať objednávku
+                    <a href='/' class="btn btn-cyan">
+                        Späť do eshopu
                     </a> 
                 </div>
             </div>
         </div>
     </div>
+    @endsection
     <div class="newsletter">
         <div class="container">
             <div class="row">

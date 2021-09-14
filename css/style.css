@@ -233,9 +233,10 @@ body {
     display: flex;
 }
 .header-info-icon {
-    display: block;
+    display: flex;
     margin: 0.1rem 0.75rem;
     position: relative;
+    align-items: flex-end;
 }
 .header-info-icon span {
     padding:  1px 2px;
@@ -329,10 +330,29 @@ body {
     margin: 0;
     padding: 0.5rem 0;
 }
+.category-image {
+    width: 24px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-right: 1rem;
+}
+.dropdown-category {
+    padding: 3rem;
+}
+.dropdown-category-left ul {
+    columns: 2;
+    -moz-columns: 2;
+}
+.dropdown-category ul a {
+    
+}
 .header-menu-category-content ul li a {
     color: var(--black);
     padding: 0.75rem 28px;
     display: block;
+    display: flex;
+    align-items: center;
     
 }
 .header-menu-category-content ul li a:hover {
@@ -787,10 +807,6 @@ select {
 .homepage-banner {
     padding-bottom: 2rem;
 }
-.homepage-banner .sale-product {
-    max-width: 23%;
-    margin-left: 2%;
-}
 .sale-product {
     width: 100%;
     border: 3px solid var(--red);
@@ -816,7 +832,7 @@ select {
     width: 50%;
 }
 .homepage-b {
-    width: 75%;
+    width: 100%;
 }
 .homepage-b p {
     max-width: 320px;
@@ -942,7 +958,8 @@ select {
     font-size: 16px;
 }
 .homepage-banner .sale-product {
-    max-width: 25%;
+    max-width: 23%;
+    margin-left: auto;
 }
 @media (max-width: 1200px) { 
     .homepage-b {
@@ -2195,6 +2212,7 @@ body.filter .footer, body.filter .newsletter, body.filter .catalog-content, body
 .cart-price-se {
     max-width: 25%;
     width: 100%;
+    position: relative;
 }
 .cart {
     padding: 3rem 0;
@@ -2231,7 +2249,6 @@ table {
 }
 .table-layout .btn {
     padding: 1rem 2rem;
-    margin: 0.25rem 0.5rem;
 }
 
 .cyan-text {
@@ -2444,6 +2461,11 @@ margin-right: 30px;
     align-items: center;
     flex-wrap: wrap;
 }
+.cart-price-se .total-card {
+    position: sticky;
+    top: 20px;
+}
+
 .total-card-content-item {
     display: flex;
     justify-content: space-between;
@@ -2698,7 +2720,10 @@ margin-right: 30px;
     border-radius: 15px;
     border: 2px solid #DCE3E6;
     color: var(--black);
+    position: relative;
+background: white;
 }
+
 .auth-page {
     padding-bottom: 7rem;
     margin-top: -150px;

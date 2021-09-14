@@ -222,80 +222,108 @@
             </h1>
         </div>
     </div>
+
+    @extends('store.layout')
+    @section('title', 'Platba')
+    @section('description', 'Platba')
+    @if(!empty($dataForExtract))
+    @php
+    extract($dataForExtract,EXTR_PREFIX_ALL,'va_page');
+    @endphp
+    @endif
+    <?php
+    extract(\App\Helpers\DynamicDataHelper::extractData('objednavka'), EXTR_PREFIX_ALL, 'va');
+    $discount = 0;
+    if (!empty($coupon)) {
+    if ($coupon->discount) $discount = (Cart::total() * $coupon->discount) / 100;
+    else if ($coupon->price) $discount = $coupon->price;
+    }
+    $totalPrice = $is_free_shipping
+    ? (float)Cart::total() + $payment->price - $discount
+    : (float)Cart::total() + $shipment->price + $payment->price - $discount;
+    $cartPrice = (float)Cart::total() - $discount;
+    $countItems = 0;
+    foreach (Cart::content() as $item) {
+    $countItems += $item->qty;
+    }
+    $currency = app('activeCurrency')->symbol;
+    ?>
+    @section('content')
     <div class="order">
         <div class="container">
             <div class="order-wrap">
                 <div class="delivery-details-div">
                     <div class="delivery-details">
-                        <h2>Dodacie údaje</h2>
-                        <p>Už mám účet, <a href=''>prihlásiť sa pod existujúcim účtom.</a></p>
+                        <h2>@text1</h2>
+                        <p>@text2 <a href=''>@text3</a></p>
                         <div>
                             <form>
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <div class="input-div">
-                                            <label>Meno <span>*</span></label>
-                                            <input type='text' />
+                                            <label>@text4 <span>*</span></label>
+                                            $input-name
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="input-div">
-                                            <label>Meno <span>*</span></label>
-                                            <input type='text' />
+                                            <label>@text5 <span>*</span></label>
+                                            $input-surname
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="input-div">
-                                            <label>Meno <span>*</span></label>
-                                            <input type='text' />
+                                            <label>@text6 <span>*</span></label>
+                                            $input-email
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="input-div">
-                                            <label>Meno <span>*</span></label>
-                                            <input type='text' />
+                                            <label>@text6 <span>*</span></label>
+                                            $input-address
                                         </div>
                                     </div>
     
                                     <div class="col-xl-6">
                                         <div class="input-div">
-                                            <label>Meno <span>*</span></label>
-                                            <input type='text' />
+                                            <label>@text7 <span>*</span></label>
+                                            $input-city
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="input-div">
-                                            <label>Meno <span>*</span></label>
-                                            <input type='text' />
+                                            <label>@text8 <span>*</span></label>
+                                            $input-address
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="input-div">
-                                            <label>Meno <span>*</span></label>
-                                            <input type='text' />
+                                            <label>@text9 <span>*</span></label>
+                                            $input-postcode
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="input-div">
-                                            <label>Meno <span>*</span></label>
-                                            <select>
-                                                <option>Slovensko</option>
-                                            </select>
+                                            <label>@text10 <span>*</span></label>
+                                            <select name="country" class="form-control custom-select" id="inputCountry" required>
+                                                <option value="sk">Slovensko</option>
+                                                <option value="cz">Česko</option>
+                                              </select>
                                         </div>
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <h2>
-                            Vernostná karta zdravia
+                            @text11
                         </h2>
                         <div class="d-flex flex-wrap">
                             <label class="way-item">
-                                Chcem kartu
+                                @text12
                                 <input type='radio' name='card'/>
                             </label>
                             <label class="way-item">
-                                Mám kartu
+                                @text13
                                 <input type='radio' name='card'/>
                             </label>
                         </div>
@@ -303,20 +331,21 @@
                     <div class="terms">
                         <ul>
                             <li>
-                                <label class="custom-check">Súhlasím s obchodnými podmienkamy
-                                    <input type="checkbox" checked="checked">
+                                <label class="custom-check">Súhlasím s <a href='/obchodne-podmienky'>obchodnými podmienkamy</a>
+                                    <input type="checkbox" name='agreement' @if(old('agreement')) checked @endif value='1' required>
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
+
                             <li>
                                 <label class="custom-check">Nákup na firmu.
-                                    <input type="checkbox" checked="checked">
+                                    <input type="checkbox"  name='company_buy' @if(old('company_buy')) checked @endif value='1' class='custom-control-input' type='checkbox' id='companyFormCheckbox'>
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
                                 <label class="custom-check">Vytvorte si účet a využívať výhody registrovaného zákazníka.
-                                    <input type="checkbox" checked="checked">
+                                    <input type="checkbox" name='createAccount' @if(old('createAccount')) checked @endif value='1' class='custom-control-input' type='checkbox' id='registrace'>
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
@@ -325,49 +354,46 @@
                 </div>
                 <div class="total-card">
                     <div class="total-card-heading">
-                        Zhrnutie objednávky
+                        @text14
                     </div>
                     <div class="total-card-products">
                         <div class="total-card-products-heading">
-                            <span>Produkt</span>
-                            <span>Cena</span>
+                            <span>@text15</span>
+                            <span>@text16</span>
                         </div>
+                        @foreach(Cart::content() as $cartItem)
+                        @php $product = $cartItem->options['item']; @endphp
+
                         <div class="total-card-products-item">
-                            <span class="total-count">1 ks</span>
+                            <span class="total-count">@text17 $product-qty ks</span>
                             <a href=''>
-                                Jack Phunkett SuperFade Face Cream 40ml
+                                $product-name
                             </a>
-                            <span class="ml-auto">19.99 €</span>
+                            <span class="ml-auto">$product-price</span>
                         </div>
-                        <div class="total-card-products-item">
-                            <span class="total-count">1 ks</span>
-                            <a href=''>
-                                Jack Phunkett SuperFade Face Cream 40ml
-                            </a>
-                            <span class="ml-auto">19.99 €</span>
-                        </div>
+                        @endforeach
                     </div>
                     <div class="total-card-content">
                         <div class="total-card-content-item">
-                            <span>Cena tovaru</span>
-                            <span>32 €</span>
+                            <span>@text18</span>
+                            <span>{{number_format($totalPrice, 2, '.', ' ')}} {{$currency}}-no-vat</span>
                         </div>
                         <div class="total-card-content-item">
-                            <span>Doprava</span>
-                            <span>3,50 €</span>
+                            <span>@text19</span>
+                            <span>@if($is_free_shipping) Zdarma @else {{$shipment->price}} {{$currency}} @endif</span>
                         </div>
                         <div class="total-card-content-item">
-                            <span>Platba</span>
-                            <span>Zadarmo</span>
+                            <span>@text20</span>
+                            <span>@if($payment->price == 0) Zdarma @else {{$payment->price}} {{$currency}} @endif</span>
                         </div>
                         <hr>
                         <div class="total-card-content-item bigger">
-                            <span>Spolu</span>
-                            <span>35,50 €</span>
+                            <span>@text21</span>
+                            <span>{{number_format($totalPrice, 2, '.', ' ')}} {{$currency}}</span>
                         </div>
                         <div class="mt-4">
                             <a href='' class="btn btn-cyan w-100 ">
-                                Objednať a zaplatiť
+                                @text22
                             </a>
                         </div>
                     </div>
@@ -375,6 +401,7 @@
             </div>
         </div>
     </div>
+    @endsection
     <div class="newsletter">
         <div class="container">
             <div class="row">
